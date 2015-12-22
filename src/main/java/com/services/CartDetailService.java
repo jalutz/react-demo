@@ -1,0 +1,16 @@
+package com.services;
+
+import com.classes.CartDetail;
+
+import java.util.List;
+
+/**
+ * Created by jlutz on 12/2/2015.
+ */
+public interface CartDetailService {
+
+    List<CartDetail> getCartItems(Integer cartId);
+    CartDetail getCartItem(Integer cartid, Integer productId);
+    void addCartItem(CartDetail item);
+    void removeCartItem(Integer cartDetailId);
+}

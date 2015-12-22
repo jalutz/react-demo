@@ -1,0 +1,40 @@
+<form ng-submit="vm.createNewUser()">
+    <h4>Create New User</h4>
+    <ul>
+        <li>
+            First Name
+            <input type="text" ng-model="vm.firstName" pattern=".{3,}" title="First name must be 3 or more characters." required>
+        </li>
+        <li>
+            Last Name
+            <input type="text" ng-model="vm.lastName" pattern=".{3,}" title="Last name must be 3 or more characters." required>
+        </li>
+        <li>
+            Email Address
+            <input type="email" ng-model="vm.email" required>
+            <span ng-show="vm.isEmailError">Email already in system. Please enter unique email.</span>
+
+        </li>
+        <li>
+            Username
+            <input type="text" ng-model="vm.userName" pattern="[A-Za-z0-9]{5,40}" title="Alphanumeric, 5-40 characters" required >
+            <span ng-show="vm.isUsernameError">Username already in system. Please enter unique username.</span>
+
+        </li>
+        <li>
+            Password
+            <input type="password" ng-model="vm.password"
+                   pattern="(?=.{8,40})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$&]).*$"
+                   title="8-40 characters, 1 uppercase letter, 1 number, 1 character @ $ or &"
+                   required>
+            <span ng-show="vm.isPasswordError">{{vm.passwordError}}</span>
+
+        </li>
+        <li>
+            Confirm Password
+            <input type="password" ng-model="vm.passwordRpt" required>
+            <span ng-show="vm.isPasswordRptError">{{vm.passwordRptError}}</span>
+        </li>
+    </ul>
+    <input type="submit">Create User</input>
+</form>
