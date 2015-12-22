@@ -1,0 +1,18 @@
+# Directories #
+build/
+bin/
+target/
+.gradle/
+.settings/
+.idea/ 
+
+*.class
+ 
+# Package Files #
+*.jar
+*.war
+*.ear
+*.db
+
+#IntelliJ file
+*.iml
