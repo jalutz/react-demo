@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {Router, Route, Link} from 'react-router'
 import ProductList from './products'
+import Cart from './cart'
 
 class Main extends React.Component {
     constructor(props){
@@ -19,6 +20,9 @@ class Main extends React.Component {
         );
     }
 }
+
+var a = 10;
+
 
 let Storefront = (props) =>
 <div className="container">
@@ -61,6 +65,7 @@ ReactDOM.render(
         <Route path="/" component={Main}/>
         <Route path="/products" component={ProductList}/>
         <Route path="/login" component={Login}/>
+        <Route path="/cart" component={Cart}/>
     </Router>,
     document.getElementById("app")
 );
