@@ -12,6 +12,12 @@
   "devDependencies": {
     "babel-core": "^6.3.17",
     "babel-loader": "^6.2.0",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "gulp": "^3.9.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "vinyl-source-stream": "^1.1.0",
     "webpack": "^1.12.9"
   },
   "scripts": {
