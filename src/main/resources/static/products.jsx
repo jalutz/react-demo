@@ -22,12 +22,26 @@ class ProductList extends React.Component
     }
 
     addItemToCart(product){
-        fetch("/addcartitem?customerId=1111", {
+
+        let cartItem = {};
+        cartItem.productId = product.productId;
+        cartItem.productPrice = product.unitPrice;
+        cartItem.quantity = 1;
+        cartItem.productName = product.productName;
+        console.log(cartItem);
+        let item = JSON.stringify(cartItem);
+
+        fetch("/addcartitem?customerId=3", {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             method: 'post',
-            body: JSON.stringify(product)
+            body: item
         });
+
         console.log("Added item to cart");
-        console.log(product);
+        console.log(item);
     }
 
     render()

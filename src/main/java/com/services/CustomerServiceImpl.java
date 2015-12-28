@@ -1,21 +1,20 @@
 package com.services;
 
-import com.classes.CurrentUser;
 import com.classes.Customer;
 import com.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.io.UnsupportedEncodingException;
-import java.util.List;
-import java.util.Properties;
-import javax.mail.*;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * Created by jlutz on 11/20/2015.
@@ -39,9 +38,9 @@ public class CustomerServiceImpl implements CustomerService{
     public void AddCustomer(Customer customer)
     {
         String rawPassword = customer.getCustomerPassword();
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String encryptedPassword = encoder.encode(rawPassword);
-        customer.setCustomerPassword(encryptedPassword);
+//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//        String encryptedPassword = encoder.encode(rawPassword);
+        //customer.setCustomerPassword(encryptedPassword);
 
         customerRepository.saveAndFlush(customer);
 
@@ -75,18 +74,18 @@ public class CustomerServiceImpl implements CustomerService{
         return customerRepository.findAll();
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Customer user;
-
-        try
-        {
-           user = customerRepository.FindCustomerByUsername(username);
-            return new CurrentUser(user);
-        }
-        catch(UsernameNotFoundException e)
-        {
-            throw new UsernameNotFoundException("User does not exist.");
-        }
-    }
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        Customer user;
+//
+//        try
+//        {
+//           user = customerRepository.FindCustomerByUsername(username);
+//            return new CurrentUser(user);
+//        }
+//        catch(UsernameNotFoundException e)
+//        {
+//            throw new UsernameNotFoundException("User does not exist.");
+//        }
+//    }
 }
