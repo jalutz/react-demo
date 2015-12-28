@@ -4,7 +4,8 @@ bin/
 target/
 .gradle/
 .settings/
-.idea/ 
+.idea/
+workspace.xml/
 /node_modules
 *.class
  
