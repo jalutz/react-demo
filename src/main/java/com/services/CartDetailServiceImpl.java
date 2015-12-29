@@ -28,6 +28,11 @@ public class CartDetailServiceImpl implements CartDetailService {
     }
 
     @Override
+    public void updateCartItem(CartDetail cartDetail) {
+        cartDetailRepository.save(cartDetail);
+    }
+
+    @Override
     public void addCartItem(CartDetail item) {
 
         CartDetail existingItem = getCartItem(item.getCartId(), item.getProductId());

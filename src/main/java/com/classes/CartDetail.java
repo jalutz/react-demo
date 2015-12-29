@@ -1,5 +1,8 @@
 package com.classes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -27,6 +30,11 @@ public class CartDetail {
 
     @Column(name = "productprice")
     private BigDecimal productPrice;
+
+    @OneToOne
+    @JoinColumn(name = "productid", insertable = false, updatable = false)
+    private Product product;
+
 
     public Integer getCartDetailId() {
         return cartDetailId;
@@ -63,4 +71,10 @@ public class CartDetail {
     public void setProductPrice(BigDecimal productPrice) {
         this.productPrice = productPrice;
     }
+
+
+    public Product getProduct() {
+        return product;
+    }
+
 }

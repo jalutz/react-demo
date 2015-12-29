@@ -2,6 +2,7 @@ package com.controllers;
 
 import com.classes.Cart;
 import com.classes.CartDetail;
+import com.classes.ViewModelCartDetail;
 import com.services.CartDetailService;
 import com.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,11 +26,12 @@ public class CartDetailController {
     private CartService cartService;
 
     @RequestMapping("/getcartitems")
-    public List<CartDetail> GetCartItems(@RequestParam("customerId") Integer customerId)
+    public List<ViewModelCartDetail> GetCartItems(@RequestParam("customerId") Integer customerId)
     {
         Cart c = cartService.getCart(customerId);
 
-        return cartDetailService.getCartItems(c.getCartId());
+
+        return  buildDetailsView(cartDetailService.getCartItems(c.getCartId()));
     }
 
     @RequestMapping(value = "/addcartitem", method = RequestMethod.POST)
@@ -52,8 +55,38 @@ public class CartDetailController {
         return r;
     }
 
+    @RequestMapping(value = "/updatecartitem", method = RequestMethod.PUT)
+    @ResponseBody
+    public ResponseEntity UpdateCartItem(@RequestBody CartDetail cartDetail){
+        ResponseEntity response = new ResponseEntity(HttpStatus.ACCEPTED);
+
+        try{
+            cartDetailService.updateCartItem(cartDetail);
+        }
+        catch(Exception e){
+            response = new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return response;
+    }
+
     @RequestMapping(value = "/removecartitem", method = RequestMethod.DELETE)
     public void RemoveCartItem(Integer cartDetailId){
         cartDetailService.removeCartItem(cartDetailId);
+    }
+
+    private List<ViewModelCartDetail> buildDetailsView(List<CartDetail> cartDetails){
+        List<ViewModelCartDetail> model = new ArrayList<>();
+        for(CartDetail theCartDetail : cartDetails ){
+            ViewModelCartDetail cartDetail = new ViewModelCartDetail();
+            cartDetail.setCartDetailId(theCartDetail.getCartDetailId());
+            cartDetail.setCartId(theCartDetail.getCartId());
+            cartDetail.setProductId(theCartDetail.getProductId());
+            cartDetail.setProductPrice(theCartDetail.getProductPrice());
+            cartDetail.setQuantity(theCartDetail.getQuantity());
+            cartDetail.setProductName(theCartDetail.getProduct().getProductName());
+            model.add(cartDetail);
+        }
+        return model;
     }
 }

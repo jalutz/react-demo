@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/StoreDemoIntellij.iml" filepath="$PROJECT_DIR$/StoreDemoIntellij.iml" />
-      <module fileurl="file://$PROJECT_DIR$/StoreDemoIntellij4.0.iml" filepath="$PROJECT_DIR$/StoreDemoIntellij4.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/react-demo.iml" filepath="$PROJECT_DIR$/react-demo.iml" />
     </modules>
   </component>
 </project>
